@@ -85,12 +85,7 @@ def search():
     
     # Do something with the retrieved data (e.g., perform a search)
     print('Search keywords:', keywords)
-    user_input=f"""
-User:  Recommend only a single movie based on these keywords{', '.join(keywords)} ? Here are my
-liked movies and the ratings out of 5 I gave to them: {', '.join(liked_movies)}
-each movie details should be in this json object format, just output this json format only, NO OTHER TEXT
-{{ "Movie": movie,"Description": description}} 
-"""
+    
     user_input=f"""
 User: Generate 5 movie recommendations based on these keywords{', '.join(keywords)} ? Here are my
 liked movies and the ratings out of 5 I gave to them: {', '.join(liked_movies)}
@@ -113,16 +108,7 @@ give movie name and description about it, leave two lines space after each movie
     recommendations = [choice['text'].strip() for choice in response.choices]
     recommendations_str = '<br>'.join(recommendations)
     recommendations_str = recommendations_str.replace('\n', '<br>')
-    print(type(recommendations))
-    print(len(recommendations))
-    print((recommendations))
-    # Print the recommended movies
-    # for i, recommendation in enumerate(recommendations, 1):
-    #     #recommendation = json.loads(normal_recommendation)
-    #     print(type(recommendation))
-        #print(f"\nRecommendation {i}: {recommendation}")
-        #print(f"\nRecommendation {i}: {recommendation['Movie']} \n {recommendation['Description']}")
-
+    
     # Redirect or render a response as needed
     return render_template('display-result.html',results=recommendations_str,username=username)
 
