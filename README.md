@@ -16,7 +16,7 @@ Clone the repository:
 git clone https://github.com/sukeerthi26/movie-recommender-gpt-api.git
 
 Install the required dependencies:
-pip install flask
+pip install flask\n
 pip install openai
 pip install pymongo
 
