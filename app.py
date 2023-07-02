@@ -8,7 +8,7 @@ uri = "mongodb://msukeerthirajeevi:5XUlZyGz8wF3MB7A@ac-t87uhto-shard-00-00.sdw7s
 
 
 # Set up OpenAI GPT-3 Sandbox API credentials
-openai.api_key = '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'
+openai.api_key = 'API_KEY'
 
 client = MongoClient(uri)
 mydb = client["movie-recommender"]
@@ -58,9 +58,6 @@ def login():
     email = request.form['email']
     password = request.form['pswd']
     
-    # Perform authentication logic here
-    # Check if the email and password match a valid user
-    
     user = users_collection.find_one({"username": email, "password": password})
     print("username=")
     print(user['username'])
@@ -80,15 +77,14 @@ def search():
 
     projection = {"_id": 0}
     liked_movies = mycollection.find({}, projection)
-    liked_movies=""
-    
+    liked_movies_str = ', '.join([f"{doc['movie']} (Rating: {doc['rating']})" for doc in liked_movies])
     
     # Do something with the retrieved data (e.g., perform a search)
     print('Search keywords:', keywords)
     
     user_input=f"""
 User: Generate 5 movie recommendations based on these keywords{', '.join(keywords)} ? Here are my
-liked movies and the ratings out of 5 I gave to them: {', '.join(liked_movies)}
+liked movies and the ratings out of 5 I gave to them: {', '.join(liked_movies_str)}
 give movie name and description about it, leave two lines space after each movie
 """
 
@@ -108,7 +104,7 @@ give movie name and description about it, leave two lines space after each movie
     recommendations = [choice['text'].strip() for choice in response.choices]
     recommendations_str = '<br>'.join(recommendations)
     recommendations_str = recommendations_str.replace('\n', '<br>')
-    
+
     # Redirect or render a response as needed
     return render_template('display-result.html',results=recommendations_str,username=username)
 
