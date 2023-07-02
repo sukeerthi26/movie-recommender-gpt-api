@@ -8,7 +8,7 @@ uri = "mongodb://msukeerthirajeevi:5XUlZyGz8wF3MB7A@ac-t87uhto-shard-00-00.sdw7s
 
 
 # Set up OpenAI GPT-3 Sandbox API credentials
-openai.api_key = 'API_KEY'
+openai.api_key = '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'
 
 client = MongoClient(uri)
 mydb = client["movie-recommender"]
