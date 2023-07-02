@@ -8,7 +8,7 @@ uri = "mongodb://msukeerthirajeevi:5XUlZyGz8wF3MB7A@ac-t87uhto-shard-00-00.sdw7s
 
 
 # Set up OpenAI GPT-3 Sandbox API credentials
-openai.api_key = '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'
+openai.api_key = 'API-KEY'
 
 client = MongoClient(uri)
 mydb = client["movie-recommender"]
@@ -83,11 +83,11 @@ def search():
     print('Search keywords:', keywords)
     
     user_input=f"""
-User: Generate 5 movie recommendations based on these keywords{', '.join(keywords)} ? Here are my
-liked movies and the ratings out of 5 I gave to them: {', '.join(liked_movies_str)}
+User: Generate 5 movie recommendations based on these keywords{keywords} ? Here are my
+liked movies and the ratings out of 5 I gave to them: {liked_movies_str}
 give movie name and description about it, leave two lines space after each movie
 """
-
+    print(user_input)
     response = openai.Completion.create(
     model="text-davinci-003",
     prompt=user_input,
